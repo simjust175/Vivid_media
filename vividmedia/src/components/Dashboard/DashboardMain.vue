@@ -1,10 +1,10 @@
 <template>
 
-    <v-container v-if="msg" class="bg-red margin-top" id="wide">
+    <v-container v-if="msg" class="bg-red padding-top" id="wide">
         {{ msg }}
     </v-container>
 
-    <v-sheet class="bg-black pa-12 fill-height fill-width grad-bg margin-top-sm" rounded>
+    <v-sheet class="bg-black pa-12 fill-height fill-width grad-bg" rounded>
         <h1 class="text-white align-center">Vivid dashboard</h1>
         <v-row justify="flex-start">
             <v-btn icon="mdi-arrow-left" size="60" @click="$router.push('/')"></v-btn>

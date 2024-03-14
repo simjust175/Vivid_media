@@ -27,6 +27,7 @@ export default {
 </script>
 
 <style>
+
 .full-height {
   height: 100vh;
 }
@@ -55,15 +56,17 @@ export default {
 
 .nav a {
   text-decoration: none;
-  color: red;
+  color: #fff;
   font-size: 15px;
+  font-family: "Chakra Petch", sans-serif;
+
 }
 
 .navbar {
   /* background-image: url(.././public/Logo/vivid.jpg); */
   background-color: #00000085;
   background-position: 180px;
-  color: red;
+  color: #fff;
   position: fixed;
   top: 0;
   left: 0;

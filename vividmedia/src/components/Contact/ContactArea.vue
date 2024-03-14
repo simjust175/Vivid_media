@@ -3,12 +3,10 @@
         <v-row class="full-height">
             <v-col height="100%">
                 <!-- <img src="../../../public/vivid_bg_contact.gif" alt="vivid" width="100%" height="100%"> -->
-                <v-card class=" bg-amber video-container" width="100%" height="100%">
+                <v-card class="bg-blue-lighten-3 video-container" width="100%" height="100%">
                     <video autoplay loop controls="false" width="100%" height="100%">
-                        <source src="../../../public/vivid_bg_contact2.mp4" type="video/mp4">
+                        <source src="../../../public/vivid_bg_vid.mp4" type="video/mp4">
                     </video>
-                    <!-- <iframe src="../../../public/vivid_bg_contact2.mp4" frameborder="0" width="105%" height="105%"
-                        autoplay loop controls="0"></iframe> -->
                 </v-card>
             </v-col>
             <v-col class="margin-top">

@@ -6,8 +6,8 @@
 
       <div class="section section-1" ref="first">
         <div>
-          <h1 class="text-h1 font-weight-thick mb-5 text-gradient">
-            Unleash the the power of A.I.
+          <h1 class="text-h1 font-weight-thick mb-5 text-gradient grow-on-scroll">
+            Unleash the power of A.I.
           </h1>
           <!-- <h2 class="text-h2 font-weight-thick mb-5 text-gradient" align="center">
             WITH VIVID MEDIA
@@ -49,7 +49,17 @@ onUnmounted(() => {
 })
 
 const handleScroll = () => {
-  const scrollY = window.scrollY
+  const scrollY = window.scrollY;
+
+  // Calculate the scroll position percentage
+  const scrollPercentage = (scrollY / window.innerHeight) * 100;
+
+  // Adjust the font size based on the scroll position
+  if (scrollPercentage >= 50) {
+    first.value.querySelector('.text-h1').classList.add('grow');
+  } else {
+    first.value.querySelector('.text-h1').classList.remove('grow');
+  }
   // decreases as user scrolls
   first.value.style.opacity =
     (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100
@@ -85,6 +95,7 @@ const handleScroll = () => {
   scroll-snap-type: y mandatory;
   /* 'y' for vertical snapping, 'mandatory' for strict snapping */
   overflow-y: scroll;
+
 }
 
 /* Set the scroll container */
@@ -97,13 +108,25 @@ const handleScroll = () => {
   /* Give it a fixed height, or make sure it's the height you want */
 }
 
+.grow-on-scroll {
+  transition: font-size 0.5s ease-in-out;
+}
+
+/* Adjust the font size based on scroll position */
+.section-1 .text-h1 {
+  font-size: 3rem;
+}
+
+.section-1 .text-h1.grow {
+  font-size: 5rem;
+}
+
 .text-gradient {
-  /* background: linear-gradient(45deg, lightblue, rgb(78, 119, 196), lightblue, rgb(71, 129, 238));
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent; */
   color: #fff;
-  text-shadow: 1px 1px 5px red;
+  /* text-shadow: 1px 1px 5px red; */
+  font-family: "Chakra Petch", sans-serif;
+  font-weight: 700;
+  font-style: normal;
 }
 
 /* copy */
