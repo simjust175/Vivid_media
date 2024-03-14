@@ -24,10 +24,10 @@ router.addRoute({
   component: DashboardPage,
 });
 
-router.addRoute({
-  path: '/',
-  component: index
-});
+// router.addRoute({
+//   path: '/',
+//   component: index
+// });
 
 router.addRoute({
   path: '/gallery',
