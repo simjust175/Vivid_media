@@ -11,7 +11,7 @@ import DashboardPage from '@/pages/DashboardPage.vue';
 import GalleryPage from '@/pages/GalleryPage.vue';
 import ContactPage from '@/pages/ContactPage.vue';
 //import HeaderArea from '../components/LandingPage/HeaderArea.vue';
-import index from '@/pages/index.vue';
+//import index from '@/pages/index.vue';
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
