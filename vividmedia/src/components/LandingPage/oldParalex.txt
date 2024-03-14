@@ -1,0 +1,16 @@
+  <!-- <header-navbar class="nav"/> -->
+        <!-- <div class="xl-height">
+            <v-parallax src="../../../public/vivid_bg.svg" ref="background" height="auto">
+                <div
+                    class="d-flex flex-column fill-width fill-height justify-center align-center text-blue-darken-3  main-img">
+                    <h1 class="text-h1 font-weight-thin mb-4">
+                        The power of A.I.
+                    </h1>
+                    <v-div height="3000" class="bg-blue"></v-div>-->
+
+            <!-- button1 -->
+            <!----<a class="button" @click="$router.push('/contact')">GET YOUR MEDIA NOW!</a>
+            
+                </div>
+</v-parallax>
+        </div> -->

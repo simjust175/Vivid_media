@@ -1,0 +1,105 @@
+   <v-table height="300px" fixed-header>
+            <thead>
+                <tr>
+                    <th class="text-left">
+                        ID
+                    </th>
+                    <th class="text-left">
+                        Description
+                    </th>
+                    <th class="text-left">
+                        Url
+                    </th>
+                    <th class="text-left">
+                        Date
+                    </th>
+                    <th class="text-left">
+                        Rating
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(item, index) in videoArray" :key="index">
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.url }}</td>
+                    <td>{{ new Date(item.updated_on).toLocaleDateString() }}</td>
+                    <td>{{ item.loved }}</td>
+                    <td >
+                        <v-icon icon="mdi-pencil" class="red"></v-icon>
+                        <v-icon icon="mdi-delete" @click="deleteVideo(item.id)"></v-icon>
+                    </td>
+
+                </tr>
+               <DialogBox :isActive="isActive"/>
+            </tbody>
+        </v-table>
+
+         
+
+          <v-sheet class="bg-teal pa-12 fill-height fill-width grad-bg" rounded>
+        <v-btn @click="testPopUp" class="bg-red">Test</v-btn>
+        <v-row justify="flex-start">
+            <v-btn icon="mdi-arrow-left" size="60" @click="$router.push('/')"></v-btn>
+        </v-row>
+        <v-card class="mx-auto px-6 py-8 someRoom" max-width="344">
+            <v-form v-model="form" @submit.prevent="onSubmit">
+                <v-text-field v-model="url" :readonly="loading" :rules="[required]" class="mb-2" label="Url"
+                    clearable></v-text-field>
+
+                <v-text-field v-model="description" :readonly="loading" :rules="[required]" label="Description"
+                    placeholder="Enter description" clearable></v-text-field>
+
+                <br>
+
+                <v-btn :disabled="!form" :loading="loading" color="teal" size="large" type="submit" variant="elevated"
+                    block>
+                    Add it now!
+                </v-btn>
+            </v-form>
+        </v-card>
+
+        <template>
+  <v-card
+    class="overflow-y-auto"
+    max-height="400"
+    v-scroll.self="onScroll"
+  >
+    <v-banner
+      class="justify-center text-h5 font-weight-light"
+      sticky
+    >
+      Scroll Me - Method invoked
+
+      <span
+        class="font-weight-bold"
+        v-text="scrollInvoked"
+      ></span>
+
+      times
+    </v-banner>
+
+    <v-card-text>
+      <div
+        v-for="n in 12"
+        :key="n"
+        class="mb-4"
+      >
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Modi commodi earum tenetur. Asperiores dolorem placeat ab nobis iusto culpa, autem molestias molestiae quidem pariatur. Debitis beatae expedita nam facere perspiciatis. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellendus ducimus cupiditate rerum officiis consequuntur laborum doloremque quaerat ipsa voluptates, nobis nam quis nulla ullam at corporis, similique ratione quasi illo!
+      </div>
+    </v-card-text>
+  </v-card>
+</template>
+<script>
+  export default {
+    data: () => ({
+      scrollInvoked: 0,
+    }),
+
+    methods: {
+      onScroll () {
+        this.scrollInvoked++
+      },
+    },
+  }
+</script>
