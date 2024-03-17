@@ -22,11 +22,7 @@ class Models {
         return softDelete;
     }
 
-    static async postContactInfo({name, email, number, job}){
-        const insertInfo = `INSERT INTO clients (${name, email, number, job})`;
-        const postJob = await db.execute(insertInfo);
-        return postJob;
-    }
+
 
 }
 

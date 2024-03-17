@@ -23,3 +23,5 @@ console.log(arr);
     'https://www.youtube.com/watch?v=MLJfwVc0QCY',
 ]);*/
 
+const stt = "dwedgif iwuif"
+console.log(stt.length);

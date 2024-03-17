@@ -2,43 +2,44 @@
   <!-- <v-sheet class="main-container"> -->
   <v-card class="margin-top">
     <div class="root">
-      <img class="background" ref="background" src="../../../public/vivid_bg_blk.svg" />
 
-      <div class="section section-1" ref="first">
+      <img class="background" ref="background" src="../../../public/newDesigns/11.svg" />
+
+      <div class="section section-1" ref="first" height="150vh">
         <div>
-          <h1 class="text-h1 font-weight-thick mb-5 text-gradient grow-on-scroll">
+          <h1 class="text-h1-first grow-on-scroll font-weight-thick text-gradient" ref="firstH1">
             Unleash the power of A.I.
           </h1>
-          <!-- <h2 class="text-h2 font-weight-thick mb-5 text-gradient" align="center">
-            WITH VIVID MEDIA
-          </h2> -->
+
         </div>
       </div>
       <div class="section section-2" ref="second">
-        <div>
-          <!-- <h2 class="text-h2 font-weight-extrathick mb-2 text-blue-lighten-4 text-gradient">Call us NOW!!</h2> -->
-          <a class="button button-wiggle" @click="$router.push('/contact')">GET YOUR MEDIA NOW!</a>
+        <div class="font-weight-thick mb-5 text-gradient grow-on-scroll">
+          <h2>Using the top in the field</h2>
         </div>
       </div>
-      <div class="section section-3" ref="third" height="80vh">
-        <!-- <v-card class="transparent" height="80vh" width="80vw"></v-card> -->
+      <div class="section section-3" ref="third" height="100vh" width="100vw">
+        <a class="button button-wiggle align-center" @click="$router.push('/contact')">GET YOUR MEDIA NOW!</a>
       </div>
     </div>
 
-    <main-carousal class="carousal  margin-left-no" />
+    <v-parallax>
+      <main-carousal class="carousal  margin-left-no" />
+    </v-parallax>
     <contact-area class="full-vh padding-top margin-left-no" />
   </v-card>
   <!-- </v-sheet> -->
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
 
 
 const background = ref(null)
 const first = ref(null)
 const second = ref(null)
 const third = ref(null)
+const firstH1 = ref(null);
 
 onMounted(() => {
   document.addEventListener('scroll', handleScroll)
@@ -51,26 +52,31 @@ onUnmounted(() => {
 const handleScroll = () => {
   const scrollY = window.scrollY;
 
-  // Calculate the scroll position percentage
   const scrollPercentage = (scrollY / window.innerHeight) * 100;
 
-  // Adjust the font size based on the scroll position
-  if (scrollPercentage >= 50) {
-    first.value.querySelector('.text-h1').classList.add('grow');
+  console.log("%", scrollPercentage)
+  if (scrollPercentage >= 0) {
+    let currentSize = parseFloat(fontSize.value);
+    firstH1.value.style.fontSize = `${currentSize + 15}px`;
   } else {
-    first.value.querySelector('.text-h1').classList.remove('grow');
+    first.value.querySelector('.text-h1-first').classList.remove('grow');
   }
-  // decreases as user scrolls
+
   first.value.style.opacity =
-    (100 - (scrollY + window.innerHeight - first.value.offsetHeight)) / 100
-    
+    (100 - ((scrollY - 100) + window.innerHeight - first.value.offsetHeight)) / 100
+
   // increases as user scrolls
   second.value.style.opacity =
     (scrollY + window.innerHeight - second.value.offsetTop) / 100
+  console.log("vvvvv", scrollY, "WWWWW", window.innerHeight);
 
-  // second.value.style.opacity =
-  //   (100 - (scrollY + window.innerHeight - second.value.offsetTop)) / 100
 
+
+  if (scrollY >= 767) {
+    second.value.style.opacity =
+      (100 - (scrollY + window.innerHeight - second.value.offsetTop)) / 100
+
+  }
   third.value.style.opacity =
     (scrollY + window.innerHeight - third.value.offsetTop) / 100
 
@@ -82,6 +88,15 @@ const handleScroll = () => {
     'scale(' + (100 + backgroundSize * 0.4) / 100 + ')'
 
 }
+
+const fontSize = computed(() => {
+  if (firstH1.value) {
+    const computedStyle = window.getComputedStyle(firstH1.value);
+    console.log("🦜", computedStyle.fontSize);
+    return computedStyle.fontSize;
+  }
+  return null;
+});
 
 </script>
 
@@ -114,16 +129,19 @@ const handleScroll = () => {
 
 /* Adjust the font size based on scroll position */
 .section-1 .text-h1 {
-  font-size: 3rem;
+  font-size: 4rem;
 }
 
-.section-1 .text-h1.grow {
-  font-size: 5rem;
+.grow {
+  font-size: 6rem;
 }
 
 .text-gradient {
   color: #fff;
-  /* text-shadow: 1px 1px 5px red; */
+  background: -webkit-linear-gradient(left, rgb(84, 171, 232), white);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-family: "Chakra Petch", sans-serif;
   font-weight: 700;
   font-style: normal;
@@ -178,6 +196,9 @@ img.background {
 
 .section-3 {
   opacity: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   /* defaults to 0 because it's not visible */
 }
 
@@ -217,7 +238,7 @@ img.background {
   text-transform: uppercase;
   letter-spacing: 1px;
   border: 2px solid white;
-  border-radius: 1000px;
+  border-radius: 200px;
   padding: 20px 30px;
   margin: 40px;
   box-shadow: 0 2px 5px 0 rgba(3, 6, 26, 0.15);
@@ -226,10 +247,10 @@ img.background {
 
 .button:hover {
   cursor: pointer;
-  /* color: #1F4141; */
-  /* color: transparent; */
+  color: #1262B7;
   animation: none;
-  background: linear-gradient(to right, rgb(113, 0, 0), rgb(184, 144, 144),  rgb(134, 1, 1));
+  background: #fff;
+  /* background: linear-gradient(to right, rgb(113, 0, 0), rgb(184, 144, 144), rgb(134, 1, 1)); */
   /* -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; */
 }

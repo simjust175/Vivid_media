@@ -7,12 +7,14 @@ dotenv.config();
 
 import cors from 'cors';
 import video from './Routes/router.js';
+import jobs from './Routes/jobRouter.js';
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 app.use('/videos', video);
+app.use('/jobs', jobs);
 
 
 app.listen(port,  ()=> {

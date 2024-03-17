@@ -19,11 +19,15 @@ registerPlugins(app)
 
 app.mount('#app')
 
-// import Vue from 'vue';
+//import Vue from 'vue';
 // import App from './App.vue';
-// import vuetify from './plugins/vuetify';
+//import vuetify from './plugins/vuetify';
 // import 'vuetify/dist/vuetify.min.css'; // Ensure you import Vuetify CSS
 // import VueRouter from 'vue-router';
+// import VueTelInputVuetify from 'vue-tel-input-vuetify/lib';
+// Vue.use(VueTelInputVuetify, {
+//     vuetify,
+//   });
 
 // Vue.config.productionTip = false;
 // Vue.use(VueRouter);

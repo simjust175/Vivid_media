@@ -9,6 +9,4 @@ route.get('/', Controllers.getVideos);
 
 route.patch('/delete/:id', Controllers.deleteVideo);
 
-route.post('/job', Controllers.postJob);
-
 export default route;

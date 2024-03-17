@@ -1,5 +1,5 @@
 <template>
-    <v-data-table :headers="headers" :items="videos" :loading="loading" :sort-by="[{ key: 'date', order: 'asc' }]">
+    <v-data-table :headers="headers" :items="videos" :loading="loading"  loading-text="Loading... Please wait" :sort-by="[{ key: 'date', order: 'asc' }]">
         <!-- Head{{ headers }} headers="!headers[3] ? headers : headers.key-->
         <template v-slot:loading>
             <v-skeleton-loader type="table-row@10"></v-skeleton-loader>
@@ -160,6 +160,8 @@ export default {
             });
             const data = await res.json();
             console.log("deleted state:", data);
+            if(res.status > 400) return null;
+            this.$emit("patchSuccess", data)
         },
         editItem(item) {
             this.editedIndex = this.videos.indexOf(item)

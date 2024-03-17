@@ -1,4 +1,5 @@
 <template>
+  <v-parallax>
     <v-carousel
       height="100vh"
       show-arrows="hover"
@@ -22,6 +23,7 @@
         </v-sheet>
       </v-carousel-item>
     </v-carousel>
+  </v-parallax>
   </template>
   <script>
     export default {

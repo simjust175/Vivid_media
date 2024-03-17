@@ -1,11 +1,10 @@
 <template>
-    <div>{{ loading }}</div>
     <v-card>
-        <v-skeleton-loader v-if="loading" class="mx-auto border" max-width="100%"
-            type="image, article"></v-skeleton-loader>
+        <!-- <v-skeleton-loader v-if="loading" class="mx-auto border" max-width="100%"
+            type="image, article"></v-skeleton-loader> -->
         <!-- <template > -->
-        <iframe  @load="onIframeLoad"  width="100%" height="240" :src="getEmbedUrl(video.youtubeURL)" frameborder="0"
-            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen v-else>
+        <iframe @load="onIframeLoad" width="100%" height="240" :lazy-src="getEmbedUrl(video.youtubeURL)" :src="getEmbedUrl(video.youtubeURL)" frameborder="0"
+            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen >
         </iframe>
         <!-- </template> -->
 
@@ -36,24 +35,32 @@ export default {
         },
         getEmbedUrl(youtubeURL) {
             const YId = this.extractYouTubeID(youtubeURL);
+            console.log(YId);
             return `https://www.youtube.com/embed/${YId}`;
         },
         onIframeLoad() {
             console.log("✈️✈️✈️✈️✈️✈️✈️");
-            this.loading = false;
-            // setTimeout(() => {
-            //     this.loading = false;
-            // }, 3000);
+            // this.loading = false;
+            setTimeout(() => {
+                this.loading = false;
+            }, 3000);
 
         },
-        // mounted() {
-        //     this.$refs.videoFrame.onload = this.onIframeLoad;
-        // },
-        //computed: {
-            // loading(){
-            //     return true;
-            // }
-        //}
+        watch: {
+            video: {
+                handler() {
+                    console.log("idhfwiuefgieurgfvbrr igiuo")
+                    this.onIframeLoad();
+                },
+                deep: true,
+            }
+        },
+
+        // computed: {
+        //         loading(){
+        //             return true;
+        //         }
+        //     }
     }
 }
 </script>

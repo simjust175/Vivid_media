@@ -2,15 +2,20 @@
     <v-card class="pa-4 fill-width full-height bg-black">
         <v-row class="full-height">
             <v-col height="100%">
+                <template v-slot:placeholder>
+                    <div class="d-flex align-center justify-center fill-height">
+                        <v-progress-circular color="grey-lighten-4" indeterminate></v-progress-circular>
+                    </div>
+                </template>
                 <!-- <img src="../../../public/vivid_bg_contact.gif" alt="vivid" width="100%" height="100%"> -->
-                <v-card class="bg-blue-lighten-3 video-container" width="100%" height="100%">
+                <v-card class="bg-black video-container" width="100%" height="100%">
                     <video autoplay loop controls="false" width="100%" height="100%">
                         <source src="../../../public/vivid_bg_vid.mp4" type="video/mp4">
                     </video>
                 </v-card>
             </v-col>
             <v-col class="margin-top">
-                <form @submit.prevent="submit">
+                <form @submit.prevent="submit" id="contactForm">
                     <v-text-field v-model="name.value.value" :counter="10" :error-messages="name.errorMessage.value"
                         label="Name"></v-text-field>
 
@@ -20,11 +25,15 @@
                     <v-text-field v-model="email.value.value" :error-messages="email.errorMessage.value"
                         label="E-mail"></v-text-field>
 
-                    <v-select v-model="select.value.value" :error-messages="select.errorMessage.value" :items="items"
-                        label="Select"></v-select>
+                    <v-select v-model="category.value.value" :error-messages="category.errorMessage.value"
+                        :items="items" label="Category"></v-select>
 
-                    <v-checkbox v-model="checkbox.value.value" :error-messages="checkbox.errorMessage.value"
-                        label="Option" type="checkbox" value="1"></v-checkbox>
+                    <v-textarea clear-icon="mdi-close-circle" label="Description" v-model="description.value.value"
+                        :error-messages="description.errorMessage.value" rows="2" :rules="textAreaRules.value"
+                        clearable></v-textarea>
+
+                    <!-- <v-checkbox v-model="checkbox.value.value" :error-messages="checkbox.errorMessage.value"
+                        label="Option" type="checkbox" value="1"></v-checkbox> -->
 
                     <v-btn class="me-8" type="submit">
                         submit
@@ -56,42 +65,69 @@ const { handleSubmit, handleReset } = useForm({
             return 'Phone number needs to be at least 9 digits.'
         },
         email(value) {
-            if (/^[a-z.-]+@[a-z.-]+\.[a-z]+$/i.test(value)) return true
+            if (/^[a-zA-Z0-9.-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]+$/i.test(value)) return true
 
             return 'Must be a valid e-mail.'
         },
-        select(value) {
+        description(value) {
+            if (value?.length > 10) return true
+            return 'Please write a clear description of what you want us to do.'
+        },
+        category(value) {
             if (value) return true
 
-            return 'Select an item.'
+            return 'Select an category.'
         },
-        checkbox(value) {
-            if (value === '1') return true
+        // checkbox(value) {
+        //     if (value === '1') return true
 
-            return 'Must be checked.'
-        },
+        //     return 'Must be checked.'
+        // },
     },
 })
 const name = useField('name')
-const phone = useField('phone')
 const email = useField('email')
-const select = useField('select')
-const checkbox = useField('checkbox')
+const phone = useField('phone')
+const category = useField('category')
+// const checkbox = useField('checkbox')
+const description = useField('description');
+const textAreaRules = [v => v.length <= 25 || 'Max 25 characters']
+
 
 const items = ref([
-    'Item 1',
-    'Item 2',
-    'Item 3',
+    'Corporate',
+    'Family',
+    'Event',
     'Item 4',
 ])
 
+const postInfo = async (values) => {
+    const res = await fetch("http://localhost:3344/jobs/postjob", {
+        method: 'POST',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(values)
+    })
+    const data = await res.json();
+    if (res.status >= 400) return null;
+    console.log(data);
+    return data;
+}
+
+
 const submit = handleSubmit(values => {
-    alert(JSON.stringify(values, null, 2))
+    const post = postInfo(values);
+    if (post.Congratulations) return null;
+    alert(JSON.stringify("Info sent successfully", null, 2))
+    handleReset()
 })
+
 </script>
 
 <style>
 .video-container {
     overflow: hidden;
+    padding-top: 0;
 }
 </style>

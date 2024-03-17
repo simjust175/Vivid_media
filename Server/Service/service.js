@@ -13,6 +13,7 @@ class Service {
     static async getVideos(){
         try {
             const get = await Admin.getVideos();
+            if(!get) return null;
             return get;
         } catch (error) {
             throw new Error(error);
