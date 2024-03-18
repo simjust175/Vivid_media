@@ -2,7 +2,7 @@
   <v-card class="navbar">
     <v-tabs v-model="tab" align-tabs="center" color="blue-lighten-1">
       <v-tab class="nav" color="blue-lighten-1" @click="$router.push('/')">Home</v-tab>
-      <v-tab class="nav" color="blue-lighten-1" @click="$router.push('/gallery')">>Our Projects</v-tab>
+      <v-tab class="nav" color="blue-lighten-1" @click="$router.push('/gallery')">Our Projects</v-tab>
       <v-tab class="nav" color="blue-lighten-1" @click="$router.push('/contact')">Contact</v-tab>
       <!--<router-link to="/">Home</router-link>
       <router-link to="/gallery">Our Projects</router-link>

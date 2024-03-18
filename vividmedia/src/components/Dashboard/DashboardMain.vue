@@ -6,7 +6,7 @@
 
 
     <v-sheet class="pa-12 fill-height fill-width" rounded>
-        <!-- <v-img src="../../../public/newDesigns/9.svg"> -->
+        <ToTheTop />
         <h1 class="text-white display-flex align-center">Vivid dashboard</h1>
         <v-row justify="flex-start">
             <v-btn icon="mdi-arrow-left" size="60" @click="$router.push('/')"></v-btn>
@@ -38,7 +38,6 @@
                 </v-card>
             </v-window-item>
         </v-window>
-        <!-- </v-img> -->
     </v-sheet>
 
 </template>
@@ -56,12 +55,10 @@ export default {
         jobsArray: [],
         isActive: false
     }),
-
     methods: {
         async postVideo(credentials) {
-            console.log("creds", credentials);
             const response = await fetch("http://localhost:3344/videos/postvideo", {
-                method: "POST",
+                method: 'POST',
                 headers: {
                     "Content-Type": "application/json"
                 },

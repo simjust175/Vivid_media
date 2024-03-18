@@ -1,5 +1,6 @@
 <template>
-    <v-container class="pt-12 margin-top" height="auto" fluid>
+    <v-container class="pt-12 margin-top" id="scroll-target" height="auto" fluid>
+        <ToTheTop fixed bottom right :window="window"/>
         <v-responsive>
             <v-row class="fill-height overflow-y-auto">
                 <!-- <v-lazy :min-height="1800" :options="{ 'threshold': 0.5 }" transition="fade-transition"> -->
@@ -38,6 +39,7 @@ const parsedVideos = computed(() =>
     videoArray.value.map((video, index) => ({
         cols: colsArray.value[index % colsArray.value.length],
         youtubeURL: video.url,
+        rating: video.loved
     }))
 );
 

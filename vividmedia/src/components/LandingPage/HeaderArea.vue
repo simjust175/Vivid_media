@@ -1,5 +1,6 @@
 <template>
   <!-- <v-sheet class="main-container"> -->
+  <ToTheTop fixed bottom right :window="window"/>
   <v-card class="margin-top">
     <div class="root">
 
@@ -7,7 +8,7 @@
 
       <div class="section section-1" ref="first" height="150vh">
         <div>
-          <h1 class="text-h1-first grow-on-scroll font-weight-thick text-gradient" ref="firstH1">
+          <h1 class="h1-text grow-on-scroll font-weight-thick text-gradient" ref="firstH1">
             Unleash the power of A.I.
           </h1>
 
@@ -97,6 +98,8 @@ const fontSize = computed(() => {
   }
   return null;
 });
+
+
 
 </script>
 
